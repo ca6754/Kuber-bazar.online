@@ -87,26 +87,92 @@
             color: #ffffff;
         }
 
+        /* Animated Download Button */
         .btn-download {
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
             color: #ffffff;
             font-size: 18px;
-            font-weight: 700;
+            font-weight: 800;
             text-decoration: none;
-            padding: 16px 28px;
-            border-radius: 14px;
+            padding: 18px 28px;
+            border-radius: 16px;
             margin-bottom: 32px;
-            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.35);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+            animation: pulseGlow 2s infinite ease-in-out;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        /* Shine Light Animation Effect */
+        .btn-download::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.5),
+                transparent
+            );
+            transform: skewX(-25deg);
+            animation: shine 3s infinite;
+        }
+
+        /* Button Hover Effects */
         .btn-download:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(34, 197, 94, 0.45);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(34, 197, 94, 0.75);
+            background: linear-gradient(135deg, #25d366 0%, #15803d 100%);
+        }
+
+        .btn-download:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        /* Arrow Icon Bounce Animation */
+        .btn-download span {
+            display: inline-block;
+            animation: bounceArrow 1.5s infinite ease-in-out;
+        }
+
+        /* Keyframes */
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(34, 197, 94, 0.85);
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+            20% {
+                left: 120%;
+            }
+            100% {
+                left: 120%;
+            }
+        }
+
+        @keyframes bounceArrow {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(3px);
+            }
         }
 
         .features-grid {
@@ -175,7 +241,7 @@
 
         <!-- Download Button -->
         <a href="https://kuber-bazar.online/" class="btn-download">
-            ⬇ DOWNLOAD APK
+            <span>⬇</span> DOWNLOAD APK
         </a>
 
         <!-- Features Section -->
